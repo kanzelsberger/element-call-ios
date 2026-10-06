@@ -23,8 +23,7 @@ final nonisolated class RoomStateFeeder: Sendable {
     private let onMemberCount: @Sendable (Int) -> Void
     
     private let tasks: Mutex<[Task<Void, Never>]> = .init([])
-    private let roomMembersFed: Mutex<CheckedContinuation<Void, Never>?> = .init(nil)
-    private let haveRoomMembers = Mutex(false)
+    private let memberReadiness = Mutex<(ready: Bool, cancelled: Bool, waiter: CheckedContinuation<Void, any Error>?)>((false, false, nil))
     
     init(manager: RtcSessionManagerHandle,
          transport: ElementCallMatrixTransportProtocol,
@@ -63,23 +62,35 @@ final nonisolated class RoomStateFeeder: Sendable {
     }
     
     /// Suspends until the first non-empty member list reached the core.
-    func awaitRoomMembers() async {
-        let alreadyFed = haveRoomMembers.withLock { $0 }
-        if alreadyFed {
-            return
-        }
-        await withCheckedContinuation { continuation in
-            let fedMeanwhile = haveRoomMembers.withLock { fed -> Bool in
-                if fed {
-                    return true
+    func awaitRoomMembers() async throws {
+        try await withTaskCancellationHandler {
+            try await withCheckedThrowingContinuation { (continuation: CheckedContinuation<Void, any Error>) in
+                let outcome = memberReadiness.withLock { state -> Result<Void, any Error>? in
+                    if state.cancelled {
+                        return .failure(CancellationError())
+                    }
+                    if state.ready {
+                        return .success(())
+                    }
+                    state.waiter = continuation
+                    return nil
                 }
-                roomMembersFed.withLock { $0 = continuation }
-                return false
+                if let outcome {
+                    continuation.resume(with: outcome)
+                }
             }
-            if fedMeanwhile {
-                continuation.resume()
-            }
+        } onCancel: {
+            self.cancelMemberWait()
         }
+    }
+    
+    private func cancelMemberWait() {
+        let waiter = memberReadiness.withLock { state in
+            state.cancelled = true
+            defer { state.waiter = nil }
+            return state.waiter
+        }
+        waiter?.resume(throwing: CancellationError())
     }
     
     /// Memberships. Call after the join and after `subscribeMembershipSnapshots`.
@@ -95,6 +106,7 @@ final nonisolated class RoomStateFeeder: Sendable {
     }
     
     func stop() {
+        cancelMemberWait()
         tasks.withLock { tasks in
             tasks.forEach { $0.cancel() }
             tasks.removeAll()
@@ -104,14 +116,12 @@ final nonisolated class RoomStateFeeder: Sendable {
     // MARK: - Private
     
     private func markRoomMembersFed() {
-        let continuation = haveRoomMembers.withLock { fed -> CheckedContinuation<Void, Never>? in
-            fed = true
-            return roomMembersFed.withLock { continuation in
-                defer { continuation = nil }
-                return continuation
-            }
+        let waiter = memberReadiness.withLock { state in
+            state.ready = true
+            defer { state.waiter = nil }
+            return state.waiter
         }
-        continuation?.resume()
+        waiter?.resume()
     }
     
     /// Room state is replaced, never removed: a departure is a present event with `{}` content, so

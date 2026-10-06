@@ -98,7 +98,14 @@ public final class MatrixRTCService {
                                      compat: compat,
                                      onMemberCount: { count in countSink.report(count) })
         feeder.start()
-        await feeder.awaitRoomMembers()
+        do {
+            try await feeder.awaitRoomMembers()
+            try Task.checkCancellation()
+        } catch {
+            feeder.stop()
+            await transport.didLeaveRoom(roomID: roomID)
+            throw error
+        }
         
         let memberID: String
         do {
