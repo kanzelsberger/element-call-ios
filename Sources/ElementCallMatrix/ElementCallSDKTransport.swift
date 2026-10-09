@@ -150,18 +150,16 @@ public final class ElementCallSDKTransport: ElementCallMatrixTransportProtocol {
         return try await bridge.sendToDeviceMessage(eventType: eventType, messages: messages).mapTransportError()
     }
     
-    /// Through the bridge when the room has one, which reports the event ID. The SDK's own `sendRaw`
-    /// does not, so the fallback answers an empty string.
+    /// Both transport paths report the event ID so callers can track or redact what they sent.
     public nonisolated func sendRoomEvent(roomID: String, eventType: String, contentJSON: String) async throws -> String {
         if let bridge = await liveBridge(roomID) {
             return try await bridge.sendRoomEvent(eventType: eventType, contentJSON: contentJSON).mapTransportError()
         }
-        try await onMain { transport in
+        return try await onMain { transport in
             try await transport.sdkCall("sendRaw(\(eventType))", in: roomID) { room in
                 try await room.sendRaw(eventType: eventType, content: contentJSON)
             }
         }
-        return ""
     }
     
     public nonisolated func redactEvent(roomID: String, eventID: String, reason: String?) async throws {
