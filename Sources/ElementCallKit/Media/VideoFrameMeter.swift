@@ -10,6 +10,7 @@ import Synchronization
 
 /// Counts frames on one stream and reports the upright size with the frame rate once a second, or
 /// at once when the size changes.
+@available(iOS 18, *)
 final nonisolated class VideoFrameMeter: Sendable {
     private struct State {
         var width = 0

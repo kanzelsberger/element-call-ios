@@ -21,6 +21,7 @@ import MatrixRustSDK
 /// ``willJoinRoom(roomID:)`` and closed in ``didLeaveRoom(roomID:)``. See `Widget/` for what retires
 /// that, and note that MSC4515 transport discovery already came off the stopgap list.
 @MainActor
+@available(iOS 18, *)
 public final class ElementCallSDKTransport: ElementCallMatrixTransportProtocol {
     public nonisolated let userID: String
     public nonisolated let deviceID: String
@@ -311,6 +312,7 @@ public final class ElementCallSDKTransport: ElementCallMatrixTransportProtocol {
 }
 
 /// Turns the SDK's listener callback into something a stream can await.
+@available(iOS 18, *)
 private final class RoomInfoRelay: RoomInfoListener {
     private let onUpdate: @Sendable () -> Void
     

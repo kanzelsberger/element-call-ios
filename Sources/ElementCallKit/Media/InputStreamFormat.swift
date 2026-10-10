@@ -15,6 +15,7 @@ import Synchronization
 /// thread held that mutex (detaching a playback node) and waited on the graph. Nothing reachable
 /// from the render thread may call into `AVAudioEngine`, so the format is *pushed* to it through
 /// ``InputFormatSnapshot`` rather than pulled.
+@available(iOS 18, *)
 nonisolated struct InputStreamFormat: Sendable, Equatable {
     /// Never zero. The render path strides by it, so a hardware format that has not been read yet
     /// has to produce a harmless mono read rather than a stride of zero.
@@ -25,6 +26,7 @@ nonisolated struct InputStreamFormat: Sendable, Equatable {
     let sampleRate: Double
 }
 
+@available(iOS 18, *)
 nonisolated extension InputStreamFormat {
     static let unknown = InputStreamFormat(channelCount: 1, isInterleaved: false, sampleRate: 0)
     
@@ -71,6 +73,7 @@ nonisolated extension InputStreamFormat {
 
 /// Written by ``CallAudioEngine`` whenever it starts or re-attaches the sink, read once per render
 /// callback. One relaxed atomic load is the entire cost on the real-time thread.
+@available(iOS 18, *)
 final nonisolated class InputFormatSnapshot: Sendable {
     private let word = Atomic<UInt64>(InputStreamFormat.unknown.packed)
     

@@ -14,6 +14,7 @@ import Synchronization
 /// a preallocated scratch buffer instead of allocating on the real-time thread, and the render
 /// logic becomes testable without an engine. The sink kept a `RenderFlags` box for the second half
 /// of that already — this absorbs it.
+@available(iOS 18, *)
 final nonisolated class AudioPlaybackRenderer: @unchecked Sendable {
     /// Sized like ``MicrophoneTap/scratchCapacity`` and for the same reason: a larger callback is
     /// served in passes rather than truncated, so the constant costs a loop and never audio.

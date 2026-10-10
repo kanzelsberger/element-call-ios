@@ -13,6 +13,7 @@ import Synchronization
 ///
 /// Under CallKit the engine must only start once the provider activated the audio session
 /// (`didActivate`), never before — starting early yields silence or `-10868`.
+@available(iOS 18, *)
 final nonisolated class CallAudioEngine: @unchecked Sendable {
     /// Every `AVAudioEngine` mutation happens here, in order, and nothing else does.
     ///

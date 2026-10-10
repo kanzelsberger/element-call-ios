@@ -12,6 +12,7 @@ import Foundation
 /// Turns an I420 frame into an NV12 `CMSampleBuffer` for `AVSampleBufferDisplayLayer`; the inverse of
 /// `I420Repacker`. Buffers come from a pool keyed on the frame size, and the format description is
 /// reused while the size is stable.
+@available(iOS 18, *)
 final nonisolated class NV12Packer: @unchecked Sendable {
     private var pool: CVPixelBufferPool?
     private var poolSize = (0, 0)

@@ -15,6 +15,7 @@ import MatrixRtc
 /// Rows are copied one by one: a plane's stride may exceed its width, and copying `stride × rows`
 /// in one go copies padding as picture, which reads as a frame shearing sideways. Chroma is half
 /// resolution **rounded up**.
+@available(iOS 18, *)
 nonisolated enum I420Repacker {
     struct Planes {
         let width: Int
@@ -114,6 +115,7 @@ nonisolated enum I420Repacker {
     }
 }
 
+@available(iOS 18, *)
 nonisolated extension I420Repacker.Planes {
     func ffiFrame(rotation: FfiVideoRotation, timestampUs: Int64) -> FfiVideoFrameData {
         FfiVideoFrameData(width: UInt32(width),

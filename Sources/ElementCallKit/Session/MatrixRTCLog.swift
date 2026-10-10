@@ -10,6 +10,7 @@ import MatrixRtc
 
 /// The framework's own log lines, routed through the core's subscriber so they land in the same sink
 /// (and the same rageshake) as the Rust output.
+@available(iOS 18, *)
 nonisolated enum MatrixRTCLog {
     static let target = "matrix_rtc_ios"
     

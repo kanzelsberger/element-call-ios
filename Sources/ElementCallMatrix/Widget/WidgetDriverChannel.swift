@@ -15,6 +15,7 @@ import MatrixRustSDK
 
 /// The two ends of the widget driver's message pipe, as a protocol so the bridge can be tested
 /// without the SDK.
+@available(iOS 18, *)
 nonisolated protocol WidgetDriverChannel: Sendable {
     /// The next message for the widget; nil once the driver has stopped.
     func recv() async -> String?
@@ -22,6 +23,7 @@ nonisolated protocol WidgetDriverChannel: Sendable {
     func send(msg: String) async -> Bool
 }
 
+@available(iOS 18, *)
 extension WidgetDriverHandle: WidgetDriverChannel { }
 
 /// The capabilities the bridge grants itself: only what the RTC core needs. Not Element Call's set,
@@ -29,6 +31,7 @@ extension WidgetDriverHandle: WidgetDriverChannel { }
 ///
 /// The machine stores whatever `acquireCapabilities` returns, so the strings answered to the
 /// `capabilities` request and the value returned here describe the same set.
+@available(iOS 18, *)
 final nonisolated class WidgetCapabilityGrant: WidgetCapabilitiesProvider, Sendable {
     static let stateEventTypes = [MatrixRTCEventTypes.legacyStateMember]
     static let toDeviceEventTypes = [MatrixRTCEventTypes.encryptionKey, MatrixRTCEventTypes.legacyEncryptionKey]

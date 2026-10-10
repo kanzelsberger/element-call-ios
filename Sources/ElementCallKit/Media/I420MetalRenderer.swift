@@ -14,6 +14,7 @@ import UIKit
 /// RGB on the GPU (BT.601 limited range, what libwebrtc decodes to). Rotation, mirroring, fitting
 /// or filling, zoom and pan are all one vertex transform, so no pixel is touched on the CPU: see
 /// ``VideoPresentation/transform(frameWidth:frameHeight:rotation:isMirrored:drawableSize:)``.
+@available(iOS 18, *)
 final nonisolated class I420MetalRenderer: NSObject, MTKViewDelegate, @unchecked Sendable {
     private static let shaderSource = """
     #include <metal_stdlib>

@@ -9,6 +9,7 @@ import AVFoundation
 
 /// 48 kHz mono 10 ms frames: what the RTC stack works in internally, so nothing has to resample,
 /// and the usual WebRTC tick.
+@available(iOS 18, *)
 nonisolated enum AudioFormat {
     static let sampleRate = 48000
     static let channelCount = 1
@@ -29,6 +30,7 @@ nonisolated enum AudioFormat {
 }
 
 /// RMS level of a PCM16 buffer, 0...1.
+@available(iOS 18, *)
 nonisolated enum AudioLevelMeter {
     static func level(of samples: UnsafeBufferPointer<Int16>) -> Float {
         guard !samples.isEmpty else { return 0 }

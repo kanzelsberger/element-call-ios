@@ -10,6 +10,7 @@ import Testing
 
 /// The joined-membership feed decides who receives media keys, so forwarding too little is worse
 /// than forwarding too often.
+@available(iOS 18, *)
 @Suite("Joined membership forwarding")
 nonisolated struct JoinedMembershipTests {
     private let alice = "@alice:example.com"

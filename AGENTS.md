@@ -1,3 +1,9 @@
+# Mango engine distribution
+
+This branch packages only ElementCallKit, ElementCallMatrix, and the existing logging port from ElementCallHost. Mango supplies its own call UI. The package can be linked by iOS 17 applications, but every media and transport declaration requires iOS 18. Hosts must guard initialization and use with an availability check. The upstream UI, design tokens, example app, and snapshot suites are excluded from this distribution. Joined-membership tests remain included.
+
+The upstream guidance below describes the full distribution. Preserve its source boundaries when updating the engine subset.
+
 # AGENTS.md — element-call-ios
 
 > A native MatrixRTC call implementation for iOS, consumed by [element-x-ios] as a SwiftPM package.

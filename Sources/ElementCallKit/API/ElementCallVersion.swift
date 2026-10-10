@@ -21,6 +21,7 @@
 /// On `main` between releases it therefore reads as the *previous* release. That is only ever wrong
 /// for a build made from this repository rather than from a tag, and every consumer pins an exact
 /// version, so what a host displays is the version it actually resolved.
+@available(iOS 18, *)
 public nonisolated enum ElementCallVersion {
     public static let current = "0.1.0-rc.9"
 }

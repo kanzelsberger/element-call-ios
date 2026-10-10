@@ -12,6 +12,7 @@ import UIKit
 /// Draws a `VideoFrameSlot` through `AVSampleBufferDisplayLayer`, which the media server composites,
 /// so it keeps working where Metal may not: the Picture in Picture window while the app is in the
 /// background. Rotation and mirroring are a layer transform; pixels are only repacked to NV12.
+@available(iOS 18, *)
 public final class SampleBufferVideoView: UIView {
     public var slot: VideoFrameSlot {
         renderer.slot
@@ -112,6 +113,7 @@ public final class SampleBufferVideoView: UIView {
 
 /// The off-main half: packs frames and enqueues them. `AVSampleBufferDisplayLayer.enqueue` is safe
 /// to call from any thread; everything else about the layer stays on the view.
+@available(iOS 18, *)
 private final nonisolated class SampleBufferRenderer: @unchecked Sendable {
     let slot = VideoFrameSlot()
     var onFrameShown: (@Sendable (MatrixRTCVideoRotation, Bool, CGFloat) -> Void)?

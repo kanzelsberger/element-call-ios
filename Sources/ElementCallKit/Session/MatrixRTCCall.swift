@@ -15,6 +15,7 @@ import UIKit
 /// member and hands out video frames for tiles. Owned by `MatrixRTCSession`.
 @MainActor
 @Observable
+@available(iOS 18, *)
 public final class MatrixRTCCall {
     public let localMemberID: String
     
@@ -937,6 +938,7 @@ public final class MatrixRTCCall {
 }
 
 /// Fans the local camera frames out to every self-view slot.
+@available(iOS 18, *)
 public final nonisolated class LocalVideoFanOut: Sendable {
     private let slots = Mutex<[UUID: VideoFrameSlot]>([:])
     
@@ -955,6 +957,7 @@ public final nonisolated class LocalVideoFanOut: Sendable {
     }
 }
 
+@available(iOS 18, *)
 private extension Clock where Duration == Swift.Duration {
     /// Runs `body` on the main actor once `duration` has passed on this clock, unless cancelled first.
     ///

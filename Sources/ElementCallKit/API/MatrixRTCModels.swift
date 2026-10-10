@@ -7,6 +7,7 @@
 
 import Foundation
 
+@available(iOS 18, *)
 public nonisolated enum MatrixRTCConstants {
     /// The application every room call uses.
     public static let callApplication = "m.call"
@@ -14,6 +15,7 @@ public nonisolated enum MatrixRTCConstants {
     public static let roomCallSlotID = "m.call#ROOM"
 }
 
+@available(iOS 18, *)
 public nonisolated enum MatrixRTCEventTypes {
     /// MSC4143 membership, spec and unstable spellings.
     public static let member = ["m.rtc.member", "org.matrix.msc4143.rtc.member"]
@@ -25,6 +27,7 @@ public nonisolated enum MatrixRTCEventTypes {
     public static let legacyEncryptionKey = "io.element.call.encryption_keys"
 }
 
+@available(iOS 18, *)
 public nonisolated enum MatrixRTCStreamKind: Sendable, Hashable {
     case microphone, camera, screenShare, screenShareAudio, data
 }
@@ -42,6 +45,7 @@ public nonisolated enum MatrixRTCStreamKind: Sendable, Hashable {
 /// simply never shared a name. Giving them one is what lets the stage hand back something the media
 /// layer can act on without having to guess the kind. What it never names is a microphone: a stream
 /// that is not a tile is a ``MatrixRTCStreamRef``, the same pair without the "renderable" in it.
+@available(iOS 18, *)
 public nonisolated struct MatrixRTCTileID: Sendable, Hashable {
     public let memberID: String
     public let kind: MatrixRTCTileKind
@@ -57,6 +61,7 @@ public nonisolated struct MatrixRTCTileID: Sendable, Hashable {
 /// Not a ``MatrixRTCStreamKind``. A person tile draws the member's camera and carries their
 /// microphone state; a share tile draws the screen. Which stream a tile draws is ``videoStreamKind``,
 /// so nothing guesses it — and a microphone can never be spelled as a tile.
+@available(iOS 18, *)
 public nonisolated enum MatrixRTCTileKind: Sendable, Hashable {
     case person, screenShare
     
@@ -73,6 +78,7 @@ public nonisolated enum MatrixRTCTileKind: Sendable, Hashable {
 ///
 /// Not a ``MatrixRTCTileID``, on purpose: a tile is a *renderable* stream, camera or screen share,
 /// and this can name a microphone. Build one from a tile with its member and kind.
+@available(iOS 18, *)
 public nonisolated struct MatrixRTCStreamRef: Sendable, Hashable {
     public let memberID: String
     public let kind: MatrixRTCStreamKind
@@ -99,6 +105,7 @@ public nonisolated struct MatrixRTCStreamRef: Sendable, Hashable {
 }
 
 /// How the membership is published, fixed for the lifetime of a session.
+@available(iOS 18, *)
 public nonisolated enum MatrixRTCElementCallCompat: String, Sendable, CaseIterable, Codable {
     /// MSC4143 as it stands.
     case off
@@ -108,16 +115,19 @@ public nonisolated enum MatrixRTCElementCallCompat: String, Sendable, CaseIterab
     case stateEvents
 }
 
+@available(iOS 18, *)
 public nonisolated enum MatrixRTCTransport: Sendable, Hashable {
     case liveKit(serviceURL: URL)
     case unsupported(type: String)
 }
 
+@available(iOS 18, *)
 public nonisolated enum MatrixRTCCallIntent: String, Sendable {
     case audio, video
 }
 
 /// MSC4075 notification sent with the membership when *starting* a call.
+@available(iOS 18, *)
 public nonisolated struct MatrixRTCNotify: Sendable, Hashable {
     public enum Kind: Sendable { case ring, notification }
     
@@ -130,6 +140,7 @@ public nonisolated struct MatrixRTCNotify: Sendable, Hashable {
     }
 }
 
+@available(iOS 18, *)
 public nonisolated struct MatrixRTCLeaveReason: Sendable, Hashable {
     public let code: String
     public let reason: String?
@@ -140,6 +151,7 @@ public nonisolated struct MatrixRTCLeaveReason: Sendable, Hashable {
     }
 }
 
+@available(iOS 18, *)
 public nonisolated struct MatrixRTCMembership: Sendable, Hashable, Identifiable {
     public let memberID: String
     public let userID: String
@@ -151,6 +163,7 @@ public nonisolated struct MatrixRTCMembership: Sendable, Hashable, Identifiable 
     }
 }
 
+@available(iOS 18, *)
 public nonisolated struct MatrixRTCStreamState: Sendable, Hashable {
     public let kind: MatrixRTCStreamKind
     public let isMuted: Bool
@@ -162,6 +175,7 @@ public nonisolated struct MatrixRTCStreamState: Sendable, Hashable {
 }
 
 /// The transport's view of a member; differs legitimately from the membership projection.
+@available(iOS 18, *)
 public nonisolated struct MatrixRTCParticipant: Sendable, Hashable, Identifiable {
     public let memberID: String
     public let userID: String
@@ -201,6 +215,7 @@ public nonisolated struct MatrixRTCParticipant: Sendable, Hashable, Identifiable
 /// derives these from the roster, orders them, and damps the order; the app renders them in the
 /// order given. Re-sorting here would fight damping the model has already applied, at a different
 /// period, and make the strip twitch on every word.
+@available(iOS 18, *)
 public nonisolated struct MatrixRTCTile: Sendable, Hashable, Identifiable {
     public let id: MatrixRTCTileID
     public let userID: String
@@ -265,6 +280,7 @@ public nonisolated struct MatrixRTCTile: Sendable, Hashable, Identifiable {
 /// Detail arrives only for the tiles inside the declared window, which is everything by default; a
 /// tile outside it still has ``userID``, which is what a name and an avatar resolve through, so it
 /// draws as an avatar tile rather than an empty one.
+@available(iOS 18, *)
 public nonisolated struct MatrixRTCTileRef: Sendable, Hashable {
     public let id: MatrixRTCTileID
     public let userID: String
@@ -278,6 +294,7 @@ public nonisolated struct MatrixRTCTileRef: Sendable, Hashable {
 }
 
 /// The model's ranking, and the detail we asked for.
+@available(iOS 18, *)
 public nonisolated struct MatrixRTCTileRoster: Sendable, Equatable {
     /// Every tile in the call, in rank order: hero, then hand raised earliest first, then speaking,
     /// then video, then join time. **Render in this order. Never re-sort it.**
@@ -316,6 +333,7 @@ public nonisolated struct MatrixRTCTileRoster: Sendable, Equatable {
 /// the tiles it draws out of rank order (002 contract C12). Everything else arrives as a
 /// reference, which is enough to draw a name and an avatar. The default, detail for everything,
 /// costs the whole call on every update at two hundred participants.
+@available(iOS 18, *)
 public nonisolated struct MatrixRTCDetailWindow: Sendable, Equatable {
     /// Half-open, over ``MatrixRTCTileRoster/order``. Clamped by the core; asking past the end is
     /// not an error.
@@ -334,6 +352,7 @@ public nonisolated struct MatrixRTCDetailWindow: Sendable, Equatable {
 
 /// What is true of *us*, beside the roster rather than in it, and changing when we act rather than
 /// when the call moves.
+@available(iOS 18, *)
 public nonisolated struct MatrixRTCLocalState: Sendable, Equatable {
     /// Our own tile. Never in the ranked list, and never a hero.
     public let tile: MatrixRTCTile
@@ -347,15 +366,18 @@ public nonisolated struct MatrixRTCLocalState: Sendable, Equatable {
     }
 }
 
+@available(iOS 18, *)
 public nonisolated enum MatrixRTCFrameEncryptionState: Sendable, Hashable {
     case ok, missingKey, decryptionFailed, encryptionFailed, internalError
 }
 
+@available(iOS 18, *)
 public nonisolated enum MatrixRTCEndReason: Sendable, Hashable {
     case left
     case connectionClosed(message: String)
 }
 
+@available(iOS 18, *)
 public nonisolated enum MatrixRTCCallEvent: Sendable, Hashable {
     case participantJoined(memberID: String, userID: String)
     case participantLeft(memberID: String)
@@ -374,6 +396,7 @@ public nonisolated enum MatrixRTCCallEvent: Sendable, Hashable {
 }
 
 /// Cumulative receive counters for one stream; sample twice and diff.
+@available(iOS 18, *)
 public nonisolated struct MatrixRTCReceiveStats: Sendable, Hashable {
     public let packetsReceived: UInt64
     public let packetsLost: Int64
@@ -390,6 +413,7 @@ public nonisolated struct MatrixRTCReceiveStats: Sendable, Hashable {
     }
 }
 
+@available(iOS 18, *)
 public nonisolated struct MatrixRTCAudioLevel: Sendable, Hashable {
     /// RMS of the decoded (or captured) PCM, 0...1.
     public let level: Float
@@ -399,6 +423,7 @@ public nonisolated struct MatrixRTCAudioLevel: Sendable, Hashable {
 }
 
 /// What is arriving (or being captured) on a video stream: upright size and measured frame rate.
+@available(iOS 18, *)
 public nonisolated struct MatrixRTCVideoInfo: Sendable, Hashable {
     public let width: Int
     public let height: Int
@@ -416,6 +441,7 @@ public nonisolated struct MatrixRTCVideoInfo: Sendable, Hashable {
 }
 
 /// What a tile actually draws, so the SFU sends only the layer that fits.
+@available(iOS 18, *)
 public nonisolated struct MatrixRTCVideoConstraints: Sendable, Hashable {
     /// Whether we are subscribed at all. The core draws a firm line between the two ways of not
     /// wanting a picture, and so do we: `isVisible == false` pauses a stream that is about to come
@@ -435,6 +461,7 @@ public nonisolated struct MatrixRTCVideoConstraints: Sendable, Hashable {
     }
 }
 
+@available(iOS 18, *)
 public nonisolated struct MatrixRTCOpenIDToken: Sendable {
     public let accessToken: String
     public let tokenType: String
@@ -449,6 +476,7 @@ public nonisolated struct MatrixRTCOpenIDToken: Sendable {
     }
 }
 
+@available(iOS 18, *)
 public nonisolated enum MatrixRTCError: Error, Sendable {
     case notStarted
     case alreadyJoined(roomID: String)

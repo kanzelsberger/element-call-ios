@@ -10,6 +10,7 @@ import AVFoundation
 /// Configures the shared audio session for a call. Never activates it when CallKit is in charge —
 /// CallKit activates the session and reports it through `didActivate`, and activating it ourselves
 /// makes that callback fire twice or not at all.
+@available(iOS 18, *)
 public nonisolated enum CallAudioSessionConfigurator {
     /// No `.defaultToSpeaker` here on purpose: with it, clearing the output override still lands on
     /// the speaker and the earpiece becomes unreachable. Video calls ask for the speaker explicitly

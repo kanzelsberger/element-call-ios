@@ -9,11 +9,13 @@ import Foundation
 import MatrixRtc
 import Synchronization
 
+@available(iOS 18, *)
 public nonisolated enum MatrixRTCLogLevel: Sendable {
     case error, warning, info, debug, verbose
 }
 
 /// A log record emitted by the Rust core. Delivered on a dedicated Rust thread, never the main actor.
+@available(iOS 18, *)
 public nonisolated struct MatrixRTCLogRecord: Sendable {
     public let level: MatrixRTCLogLevel
     /// Module path of the emitting code, e.g. `matrix_rtc_core::session`.
@@ -39,6 +41,7 @@ public nonisolated struct MatrixRTCLogRecord: Sendable {
 /// The core installs a process-wide subscriber on first use and refuses a second one, so this
 /// must run once, before anything else touches the FFI — `RtcSessionManagerHandle` included.
 /// Without it the core is completely silent, errors included.
+@available(iOS 18, *)
 public nonisolated enum MatrixRTCLogging {
     /// Leaves the per-frame media/livekit flood out while keeping SFU connection and ICE progress
     /// (reported by `livekit` at info) readable.
@@ -92,6 +95,7 @@ public nonisolated enum MatrixRTCLogging {
     }
 }
 
+@available(iOS 18, *)
 private nonisolated extension MatrixRTCLogLevel {
     init(_ level: RtcLogLevel) {
         switch level {

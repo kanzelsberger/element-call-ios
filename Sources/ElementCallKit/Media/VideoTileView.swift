@@ -10,6 +10,7 @@ import SwiftUI
 
 /// Draws a `VideoFrameSlot` with Metal and reports the drawn pixel size so the SFU can be asked
 /// for a layer that fits.
+@available(iOS 18, *)
 public struct VideoTileView: UIViewRepresentable {
     let slot: VideoFrameSlot
     let presentation: VideoPresentation
@@ -47,6 +48,7 @@ public struct VideoTileView: UIViewRepresentable {
     }
 }
 
+@available(iOS 18, *)
 public final class VideoTileUIView: UIView {
     var onPixelSizeChange: ((CGSize) -> Void)?
     var onContentSizeChange: ((CGSize) -> Void)?

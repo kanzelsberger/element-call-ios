@@ -11,6 +11,7 @@ import Synchronization
 
 /// The latest frame for one renderer. Overwriting releases the previous frame (dropping is the
 /// normal case under load, and must never become back-pressure on the decoder or a leak).
+@available(iOS 18, *)
 public final nonisolated class VideoFrameSlot: Sendable, Identifiable {
     public let id = UUID()
     /// Boxed on purpose: a function value kept directly in a generic `Mutex` is reabstracted on
@@ -82,6 +83,7 @@ public final nonisolated class VideoFrameSlot: Sendable, Identifiable {
 /// nothing. Two handles on one track crash the core, hence exactly one per key, and a linger before
 /// closing: SwiftUI disposes the old tile before creating the new one when a member moves between
 /// spotlight and strip, and tearing the stream down in that gap raced a frame in flight.
+@available(iOS 18, *)
 final nonisolated class RemoteVideoSource: @unchecked Sendable {
     static let linger: Duration = .seconds(2)
     
@@ -190,6 +192,7 @@ final nonisolated class RemoteVideoSource: @unchecked Sendable {
 }
 
 /// Wraps the FFI stream so the reader can close it explicitly when cancelled.
+@available(iOS 18, *)
 final nonisolated class VideoFrameStreamBox: @unchecked Sendable {
     private let stream: MatrixRtc.VideoFrameStream
     

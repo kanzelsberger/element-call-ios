@@ -14,6 +14,7 @@ import Synchronization
 // and per call while the core subscribes to to-device messages once per Matrix session.
 
 /// Fans to-device messages from whichever room bridges are live into session-long streams.
+@available(iOS 18, *)
 final nonisolated class ToDeviceRelay: Sendable {
     private struct Subscriber {
         let eventTypes: Set<String>

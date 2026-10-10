@@ -14,6 +14,7 @@ import MatrixRustSDK
 /// This is the only part of the widget stopgap that touches the SDK. The bridge itself speaks the
 /// widget API's JSON to a channel, which is why its tests can drive it through a pair of pipes with
 /// no SDK and no homeserver in sight.
+@available(iOS 18, *)
 enum WidgetDriverFactory {
     static func makeBridge(room: Room,
                            roomID: String,

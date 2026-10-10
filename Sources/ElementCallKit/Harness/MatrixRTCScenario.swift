@@ -20,6 +20,7 @@ import Foundation
 /// first, our own tile implicit; a token is a name (uppercase letters and digits), an optional `#`
 /// for that member's screen share, and flags: `*` hero, `!` speaking, `^` hand raised, `v` has
 /// video, `m` microphone muted.
+@available(iOS 18, *)
 public nonisolated struct MatrixRTCScenario: Sendable, Equatable {
     /// One remote tile as a scenario names it. `A` and `A#` are two tiles of one member.
     public struct Token: Sendable, Hashable {

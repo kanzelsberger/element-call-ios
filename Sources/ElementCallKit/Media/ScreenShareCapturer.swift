@@ -15,6 +15,7 @@ import Synchronization
 ///
 /// A screen is mostly still and every pixel is repacked on the way out, so this caps the long edge
 /// and halves the frame rate.
+@available(iOS 18, *)
 final nonisolated class ScreenShareCapturer: @unchecked Sendable {
     static let maxLongEdge = 1280
     static let frameInterval: TimeInterval = 1.0 / 15.0
@@ -168,6 +169,7 @@ final nonisolated class ScreenShareCapturer: @unchecked Sendable {
 }
 
 /// Bridges `RPScreenRecorderDelegate`, which needs an `NSObject`, without making the capturer one.
+@available(iOS 18, *)
 private final nonisolated class ScreenRecorderObserver: NSObject, RPScreenRecorderDelegate, @unchecked Sendable {
     private let handlers = Mutex<Handlers>(.init())
     
@@ -201,6 +203,7 @@ private final nonisolated class ScreenRecorderObserver: NSObject, RPScreenRecord
 }
 
 /// Runs its body the first time only, from any thread.
+@available(iOS 18, *)
 private final nonisolated class ResumeOnce: Sendable {
     private let done = Mutex(false)
     

@@ -16,6 +16,7 @@ import Synchronization
 /// against `detach` (see ``InputStreamFormat``). If a change ever hands this type an engine to ask,
 /// `MicrophoneTapTests` stops compiling, which is the point of writing the test against the
 /// initialiser.
+@available(iOS 18, *)
 final nonisolated class MicrophoneTap: @unchecked Sendable {
     /// The IO unit's default `maximumFramesToRender`, against the 480 (10 ms at 48 kHz) the session
     /// asks for. This is a sizing choice, not a limit: ``render(frameCount:audioBufferList:)``

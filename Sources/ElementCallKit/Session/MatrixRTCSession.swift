@@ -16,6 +16,7 @@ import Observation
 /// subscription → cancel feeds → leave.
 @MainActor
 @Observable
+@available(iOS 18, *)
 public final class MatrixRTCSession {
     public let roomID: String
     public let slotID: String
@@ -149,6 +150,7 @@ public final class MatrixRTCSession {
     }
 }
 
+@available(iOS 18, *)
 private final nonisolated class OpenIDTokenProviderAdapter: OpenIdTokenProvider, Sendable {
     private let transport: ElementCallMatrixTransportProtocol
     

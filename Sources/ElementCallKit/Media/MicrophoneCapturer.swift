@@ -14,6 +14,7 @@ import Synchronization
 ///
 /// Muting stops handing frames over **and** tells the transport (done by the call); the engine and
 /// the capture stay up so unmuting is instant.
+@available(iOS 18, *)
 final nonisolated class MicrophoneCapturer: @unchecked Sendable {
     private let engine: CallAudioEngine
     private let ring = PCMRingBuffer(capacity: AudioFormat.samplesPerFrame * 50)

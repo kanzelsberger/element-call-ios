@@ -14,6 +14,7 @@ import MatrixRtc
 /// failure is turned into a `CommandSenderError` — anything else crossing the FFI aborts the process.
 /// Cancellation stays a cancellation: dressing it as a send failure would tell the core the command
 /// was attempted when its session is simply gone.
+@available(iOS 18, *)
 final nonisolated class MatrixRTCCommandSender: CommandSenderCallback, Sendable {
     /// matrix-rust-sdk's `sendStickyRaw` returns nothing, so there is no event ID to report.
     static let noEventID = ""

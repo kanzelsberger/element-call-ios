@@ -19,6 +19,7 @@ import Synchronization
 ///
 /// The bindings' types stay inside this module, which is the one allowed to import the core; the
 /// records are in the app's own terms.
+@available(iOS 18, *)
 public final nonisolated class MatrixRTCScriptedSession: MediaSessionProtocol, Sendable {
     public struct DetailWindowRecord: Sendable, Equatable {
         public let time: Duration
@@ -281,6 +282,7 @@ public final nonisolated class MatrixRTCScriptedSession: MediaSessionProtocol, S
 /// The player owns the call rather than the other way round because `MatrixRTCCall.init` is
 /// internal: this is the one public way to make a call that has no session behind it, and it is
 /// public because the example harness runs on it, the same reason `ElementCallFakes` ship.
+@available(iOS 18, *)
 public final class MatrixRTCScenarioPlayer {
     public let scenario: MatrixRTCScenario
     public let clock: MatrixRTCManualClock

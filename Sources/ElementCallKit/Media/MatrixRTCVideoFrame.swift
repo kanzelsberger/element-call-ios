@@ -8,6 +8,7 @@
 import Foundation
 import MatrixRtc
 
+@available(iOS 18, *)
 public nonisolated enum MatrixRTCVideoRotation: Int, Sendable {
     case deg0 = 0, deg90 = 90, deg180 = 180, deg270 = 270
     
@@ -26,6 +27,7 @@ public nonisolated enum MatrixRTCVideoRotation: Int, Sendable {
 /// Remote planes are the core's own memory and stay valid exactly as long as this object is alive:
 /// ARC is the reference count, so hold the frame while reading and drop it when done. Rotation is
 /// *not* applied to the pixels; the renderer turns the picture upright.
+@available(iOS 18, *)
 public final nonisolated class MatrixRTCVideoFrame: @unchecked Sendable {
     public struct Plane {
         public let pointer: UnsafeRawPointer

@@ -14,6 +14,7 @@ import Synchronization
 /// To-device delivery cannot be caught up on: the SDK hands each message to whoever is subscribed
 /// at that moment and forgets it. Subscribing per call would drop the key the far end rotates the
 /// instant it sees us join, leaving a member at `MISSING_KEY` for the entire call.
+@available(iOS 18, *)
 final nonisolated class SessionKeyFeeder: Sendable {
     private let manager: RtcSessionManagerHandle
     private let transport: ElementCallMatrixTransportProtocol

@@ -9,6 +9,7 @@ import ElementCallHost
 import ElementCallKit
 import Foundation
 
+@available(iOS 18, *)
 nonisolated enum MatrixRTCRoomBridgeError: Error, Sendable, Equatable {
     /// The bridge is not (or no longer) running for the room.
     case notRunning
@@ -26,6 +27,7 @@ nonisolated enum MatrixRTCRoomBridgeError: Error, Sendable, Equatable {
 /// Today's implementation is `WidgetMatrixBridge`, driving the SDK widget driver in process. See that
 /// file's header for the exact bindings that retire this. Once they land, an SDK-backed
 /// implementation replaces it and the transport does not change.
+@available(iOS 18, *)
 nonisolated protocol MatrixRTCRoomBridgeProtocol: AnyObject, Sendable {
     var roomID: String { get }
     

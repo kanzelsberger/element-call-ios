@@ -12,6 +12,7 @@ import Synchronization
 /// Plays one remote member: a source node on the engine pulls from a ring that a filler task keeps
 /// topped up from the decoded stream. Under-runs play silence and are counted; a full ring drops
 /// the oldest audio so latency stays bounded.
+@available(iOS 18, *)
 final nonisolated class AudioPlaybackSink: @unchecked Sendable {
     let memberID: String
     private let engine: CallAudioEngine

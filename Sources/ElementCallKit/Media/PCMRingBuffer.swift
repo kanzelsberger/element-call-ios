@@ -10,6 +10,7 @@ import Synchronization
 
 /// A single-producer single-consumer ring of Int16 samples, lock free so the audio render thread
 /// can read it without ever waiting on the filler.
+@available(iOS 18, *)
 final nonisolated class PCMRingBuffer: @unchecked Sendable {
     private let capacity: Int
     private let storage: UnsafeMutablePointer<Int16>

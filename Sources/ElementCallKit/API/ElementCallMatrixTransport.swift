@@ -9,6 +9,7 @@ import Foundation
 
 /// A to-device message delivered by the homeserver. Only encrypted messages are trusted, and the sender
 /// is the cryptographically attested one, never the one claimed in the content.
+@available(iOS 18, *)
 public nonisolated struct MatrixRTCToDeviceMessage: Sendable {
     public let eventType: String
     public let attestedSenderID: String
@@ -27,6 +28,7 @@ public nonisolated struct MatrixRTCToDeviceMessage: Sendable {
     }
 }
 
+@available(iOS 18, *)
 public nonisolated struct MatrixRTCRoomStateEvent: Sendable, Hashable {
     public let eventID: String?
     public let eventType: String
@@ -45,11 +47,13 @@ public nonisolated struct MatrixRTCRoomStateEvent: Sendable, Hashable {
     }
 }
 
+@available(iOS 18, *)
 public nonisolated enum MatrixRTCDelayedEventAction: Sendable {
     case cancel, restart
 }
 
 /// How the host reports a failed send; the core reacts differently to each.
+@available(iOS 18, *)
 public nonisolated enum MatrixRTCTransportError: Error, Sendable, Equatable {
     /// A permanent refusal (e.g. the homeserver doesn't implement delayed events): the core retires
     /// the feature for the session instead of retrying it.
@@ -60,6 +64,7 @@ public nonisolated enum MatrixRTCTransportError: Error, Sendable, Equatable {
 
 /// The Matrix side the core needs, implemented by the host with its SDK proxies. This package never
 /// imports the Matrix SDK, so this is the whole contract between the two.
+@available(iOS 18, *)
 public nonisolated protocol ElementCallMatrixTransportProtocol: AnyObject, Sendable {
     var userID: String { get }
     var deviceID: String { get }
@@ -125,6 +130,7 @@ public nonisolated protocol ElementCallMatrixTransportProtocol: AnyObject, Senda
     func didLeaveRoom(roomID: String) async
 }
 
+@available(iOS 18, *)
 public extension ElementCallMatrixTransportProtocol {
     func willJoinRoom(roomID: String) async throws { }
     func didLeaveRoom(roomID: String) async { }

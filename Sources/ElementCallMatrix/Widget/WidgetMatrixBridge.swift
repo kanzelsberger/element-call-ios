@@ -40,6 +40,7 @@ import Foundation
 /// State arrives as deltas (`update_state` from sync, `send_event` for timeline-borne state) while the
 /// core wants the full state on every tick. Room state is replace-only, a leave being a present `{}`
 /// event, so the latest event per state key *is* the full state and the map below re-emits it whole.
+@available(iOS 18, *)
 actor WidgetMatrixBridge: MatrixRTCRoomBridgeProtocol {
     nonisolated let roomID: String
     

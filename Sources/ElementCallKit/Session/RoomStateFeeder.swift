@@ -14,6 +14,7 @@ import Synchronization
 /// Ordering is not cosmetic. Members and encryption go in **before** the join (a sender the core
 /// cannot place in the room is rejected as `SenderNotInRoom`); memberships only **after** the join,
 /// because the compat mode fixed by the join decides how they are parsed.
+@available(iOS 18, *)
 final nonisolated class RoomStateFeeder: Sendable {
     private let manager: RtcSessionManagerHandle
     private let transport: ElementCallMatrixTransportProtocol

@@ -12,6 +12,7 @@ import simd
 ///
 /// Distinct from the frame's own rotation and mirroring, which are properties of the picture rather
 /// than choices about it: those come from the sender and the capturer, this comes from the view.
+@available(iOS 18, *)
 public nonisolated struct VideoPresentation: Equatable, Sendable {
     /// How much of the picture to show: 0 covers the surface and clips the overflow, 1 shows the
     /// whole of it and leaves bars.
@@ -46,6 +47,7 @@ public nonisolated struct VideoPresentation: Equatable, Sendable {
     }
 }
 
+@available(iOS 18, *)
 nonisolated extension VideoPresentation {
     /// The vertex transform that takes the unit quad to where this presentation wants the picture:
     /// rotate upright, mirror if asked, scale to fit or fill, then shift by the pan.

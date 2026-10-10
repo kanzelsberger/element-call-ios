@@ -18,6 +18,7 @@ import MatrixRustSDK
 // switches over values with no reason to need it. It also lets the tests that exercise them run off
 // the main actor, which is what stopped them being billed for time the snapshot tests spent holding
 // it -- a two-line comparison below was reported taking 68 seconds on CI, all of it queueing.
+@available(iOS 18, *)
 nonisolated extension MatrixRTCRoomBridgeError {
     /// A permanent refusal retires the feature; anything else is retried.
     ///
@@ -41,6 +42,7 @@ nonisolated extension MatrixRTCRoomBridgeError {
     }
 }
 
+@available(iOS 18, *)
 extension Result where Failure == MatrixRTCRoomBridgeError {
     func mapTransportError() throws -> Success {
         switch self {
@@ -50,6 +52,7 @@ extension Result where Failure == MatrixRTCRoomBridgeError {
     }
 }
 
+@available(iOS 18, *)
 nonisolated extension Error {
     /// The same classification for failures that come straight off the SDK rather than the bridge.
     var transportError: MatrixRTCTransportError {

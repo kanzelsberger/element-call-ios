@@ -8,6 +8,7 @@
 import Foundation
 import MatrixRtc
 
+@available(iOS 18, *)
 nonisolated extension MatrixRTCStreamKind {
     init(_ kind: FfiStreamKind) {
         switch kind {
@@ -30,6 +31,7 @@ nonisolated extension MatrixRTCStreamKind {
     }
 }
 
+@available(iOS 18, *)
 nonisolated extension MatrixRTCElementCallCompat {
     var ffi: FfiElementCallCompat {
         switch self {
@@ -40,6 +42,7 @@ nonisolated extension MatrixRTCElementCallCompat {
     }
 }
 
+@available(iOS 18, *)
 nonisolated extension MatrixRTCTransport {
     var ffi: FfiTransportConfig? {
         switch self {
@@ -49,6 +52,7 @@ nonisolated extension MatrixRTCTransport {
     }
 }
 
+@available(iOS 18, *)
 nonisolated extension MatrixRTCNotify {
     var ffi: FfiNotifyConfig {
         FfiNotifyConfig(notificationType: kind == .ring ? .ring : .notification,
@@ -59,6 +63,7 @@ nonisolated extension MatrixRTCNotify {
     }
 }
 
+@available(iOS 18, *)
 nonisolated extension MatrixRTCMembership {
     init(_ membership: JoinedMembership) {
         self.init(memberID: membership.memberId,
@@ -68,6 +73,7 @@ nonisolated extension MatrixRTCMembership {
     }
 }
 
+@available(iOS 18, *)
 nonisolated extension MatrixRTCParticipant {
     init(_ participant: FfiParticipant) {
         self.init(memberID: participant.memberId,
@@ -80,6 +86,7 @@ nonisolated extension MatrixRTCParticipant {
     }
 }
 
+@available(iOS 18, *)
 nonisolated extension MatrixRTCTileKind {
     init(_ kind: FfiTileKind) {
         switch kind {
@@ -96,12 +103,14 @@ nonisolated extension MatrixRTCTileKind {
     }
 }
 
+@available(iOS 18, *)
 nonisolated extension MatrixRTCTileID {
     init(_ id: FfiTileId) {
         self.init(memberID: id.memberId, kind: .init(id.kind))
     }
 }
 
+@available(iOS 18, *)
 nonisolated extension MatrixRTCTile {
     /// `isLocal` is ours to decide: the bindings' tile has no such field, because our own tile only
     /// ever arrives on the local-state surface and is never in the ranked list. Comparing the member
@@ -120,6 +129,7 @@ nonisolated extension MatrixRTCTile {
     }
 }
 
+@available(iOS 18, *)
 nonisolated extension MatrixRTCTileRoster {
     init(_ roster: FfiTileRoster, localMemberID: String) {
         // Keyed by identity on the way in, so nothing downstream is tempted to join by position.
@@ -134,6 +144,7 @@ nonisolated extension MatrixRTCTileRoster {
     }
 }
 
+@available(iOS 18, *)
 nonisolated extension MatrixRTCLocalState {
     init(_ state: FfiLocalState, localMemberID: String) {
         self.init(tile: MatrixRTCTile(state.tile, localMemberID: localMemberID),
@@ -141,6 +152,7 @@ nonisolated extension MatrixRTCLocalState {
     }
 }
 
+@available(iOS 18, *)
 nonisolated extension MatrixRTCReceiveStats {
     init(_ stats: FfiReceiveStats) {
         self.init(packetsReceived: stats.packetsReceived,
@@ -154,6 +166,7 @@ nonisolated extension MatrixRTCReceiveStats {
     }
 }
 
+@available(iOS 18, *)
 nonisolated extension MatrixRTCFrameEncryptionState {
     init(_ state: FfiFrameEncryptionState) {
         switch state {
@@ -166,6 +179,7 @@ nonisolated extension MatrixRTCFrameEncryptionState {
     }
 }
 
+@available(iOS 18, *)
 nonisolated extension MatrixRTCCallEvent {
     init(_ event: FfiCallEvent) {
         switch event {

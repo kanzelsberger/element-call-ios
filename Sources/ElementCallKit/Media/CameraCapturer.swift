@@ -16,6 +16,7 @@ import UIKit
 /// Turning the camera off releases the device — the indicator going out is the point — while the
 /// track stays published and muted at the transport, so peers see a deliberate camera-off rather
 /// than a track disappearing.
+@available(iOS 18, *)
 final nonisolated class CameraCapturer: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate, @unchecked Sendable {
     static let captureWidth: UInt32 = 640
     static let captureHeight: UInt32 = 480

@@ -18,6 +18,7 @@ import Foundation
 /// that runs off the edges is a crop, a border with black beside it is a letterbox, and a border
 /// that changes thickness partway through a move is the picture being stretched rather than redrawn.
 /// The bar that sweeps down it says the stream is live rather than a still.
+@available(iOS 18, *)
 public nonisolated enum MatrixRTCTestPattern {
     /// BT.601 limited range, which is what the renderer's shader decodes.
     private struct Colour {

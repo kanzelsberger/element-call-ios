@@ -9,6 +9,7 @@ import Foundation
 import MatrixRtc
 
 /// Turns an MSC4143 media-key to-device message into the record the core expects.
+@available(iOS 18, *)
 nonisolated enum EncryptionKeyMapper {
     /// - Returns: nil when the message is untrusted or unusable.
     static func map(_ message: MatrixRTCToDeviceMessage) -> FfiReceivedEncryptionKey? {

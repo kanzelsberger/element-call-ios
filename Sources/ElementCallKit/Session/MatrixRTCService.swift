@@ -14,6 +14,7 @@ import Synchronization
 ///
 /// Never rebuilt: it accumulates memberships and keys across calls.
 @MainActor
+@available(iOS 18, *)
 public final class MatrixRTCService {
     private let transport: ElementCallMatrixTransportProtocol
     private var manager: RtcSessionManagerHandle?
@@ -154,6 +155,7 @@ public final class MatrixRTCService {
 }
 
 /// Bridges the feeder's background count reports onto the main-actor session.
+@available(iOS 18, *)
 private final nonisolated class MemberCountSink: Sendable {
     private let session: Mutex<MatrixRTCSession?> = .init(nil)
     private let pending: Mutex<Int?> = .init(nil)

@@ -18,6 +18,7 @@ import Synchronization
 /// Sleepers are resumed in deadline order when the clock advances past them; resuming is all this
 /// does, and whatever the resumed task then does runs on its own executor, so a caller that needs
 /// the consequences to have landed yields afterwards. Advancing never goes backwards.
+@available(iOS 18, *)
 public final nonisolated class MatrixRTCManualClock: Clock, Sendable {
     public struct Instant: InstantProtocol, Sendable, Hashable, Comparable {
         public let offset: Duration
