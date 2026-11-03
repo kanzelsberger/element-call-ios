@@ -41,7 +41,7 @@ let package = Package(
         // The upper bound is absurd on purpose: the SDK's major version is the calendar year, so
         // `upToNextMajor` would lock hosts out every January. CI builds against one exact version, and
         // that is what actually gets tested.
-        .package(url: "https://github.com/kanzelsberger/matrix-rust-components-swift.git", exact: "26.9.29-mango.1"),
+        .package(url: "https://github.com/kanzelsberger/matrix-rust-components-swift.git", exact: "26.10.9-mango.1"),
         .package(url: "https://github.com/pointfreeco/swift-snapshot-testing", exact: "1.19.4")
     ],
     targets: [
