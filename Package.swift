@@ -11,7 +11,7 @@ let package = Package(
     ],
     dependencies: [
         .package(url: "https://github.com/element-hq/matrix-rust-rtc", exact: "0.4.0-rc.1"),
-        .package(url: "https://github.com/kanzelsberger/matrix-rust-components-swift.git", exact: "26.10.9-mango.1")
+        .package(url: "https://github.com/kanzelsberger/matrix-rust-components-swift.git", exact: "26.11.11-mango.1")
     ],
     targets: [
         .target(name: "ElementCallKit",

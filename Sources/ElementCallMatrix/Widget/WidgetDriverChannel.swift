@@ -60,6 +60,8 @@ final nonisolated class WidgetCapabilityGrant: WidgetCapabilitiesProvider, Senda
                                   updateDelayedEvent: true,
                                   sendDelayedEvent: true,
                                   downloadFiles: false,
-                                  rtcTransports: true)
+                                  rtcTransports: true,
+                                  rtcLivekitGetToken: false,
+                                  rtcLivekitDelegateDelayedLeave: false)
     }
 }
