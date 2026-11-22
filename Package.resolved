@@ -1,22 +1,13 @@
 {
-  "originHash" : "a63078eb75e5733291d455ec3ceecdccd91cd92d03ada1157610ab03627aa2a9",
+  "originHash" : "213c87df01d87c34d51fb497a2511abdf612aeae95263ac629f4b738d7b5a669",
   "pins" : [
-    {
-      "identity" : "compound-design-tokens",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/element-hq/compound-design-tokens",
-      "state" : {
-        "revision" : "86c15ef71798581d1e0cc39a7f99e598ad572419",
-        "version" : "11.0.0"
-      }
-    },
     {
       "identity" : "matrix-rust-components-swift",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/kanzelsberger/matrix-rust-components-swift.git",
       "state" : {
-        "revision" : "be57cf7e2a30b75e23045aab42ca718b5579ff96",
-        "version" : "26.10.9-mango.1"
+        "revision" : "9656d5391f290bb23b03835d6c4420596a6891d5",
+        "version" : "26.11.17-mango.1"
       }
     },
     {
@@ -26,42 +17,6 @@
       "state" : {
         "revision" : "a889df4e8a2e5ff328cadc985b6647288a104704",
         "version" : "0.4.0-rc.1"
-      }
-    },
-    {
-      "identity" : "swift-custom-dump",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/pointfreeco/swift-custom-dump",
-      "state" : {
-        "revision" : "4fb9e7cbb4b8f5a7354005db39447f570d6b3e19",
-        "version" : "1.7.3"
-      }
-    },
-    {
-      "identity" : "swift-issue-reporting",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/pointfreeco/swift-issue-reporting",
-      "state" : {
-        "revision" : "75b000cea2ca6d7527a57e1b9cc0bdf21a9abe9f",
-        "version" : "2.1.1"
-      }
-    },
-    {
-      "identity" : "swift-snapshot-testing",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/pointfreeco/swift-snapshot-testing",
-      "state" : {
-        "revision" : "59a99c458de4d2dee580529b61b4f78dca7b7fa6",
-        "version" : "1.19.4"
-      }
-    },
-    {
-      "identity" : "swift-syntax",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/swiftlang/swift-syntax",
-      "state" : {
-        "revision" : "79e4b74a295b6eb74a8b585e3a39d29e70c1dbd1",
-        "version" : "603.0.2"
       }
     }
   ],
